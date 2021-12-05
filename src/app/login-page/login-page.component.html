@@ -1,0 +1,29 @@
+
+<div class="row">
+    <div class="col-4 centercol">
+
+    </div>
+    <div class="col-4 centercol">
+        <app-logo></app-logo>
+        <div class="mainInputs">
+
+            <h2 >Iniciar Sesión</h2>
+            <div class="inputsdata">
+              <app-input ngDefaultControl [(ngModel)]="userEmail" [placeHolder]='"Correo electronico"' [img]="'../../assets/email.svg'"  [inputType]="'email'"></app-input>
+                <app-input ngDefaultControl [(ngModel)]="userPassword" [placeHolder]='"Contraseña"' [img]="'../../assets/password.svg'"  [inputType]="'password'"></app-input>
+            </div>
+            <div class="centercol2">
+                <app-btn-pink [name]='"Entrar"' (buttonSelected)="loginUser()"></app-btn-pink>
+                <div class="centercol3">
+                    <a href=""><b>¿Olvidaste tu contraseña?</b> </a>
+                    <a routerLink="/register"><b>¿No tienes cuenta? Registrate</b></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+    
+    </div>
+    
+</div>
