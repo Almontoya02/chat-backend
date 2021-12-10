@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DashboardChatComponent } from './dashboard-chat/dashboard-chat.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { MainComponent } from './main/main.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path:"update-user",
     component: UpdateuserPageComponent,
+  },
+  {
+    path:"chat",
+    component: DashboardChatComponent,
   }
 ];
 

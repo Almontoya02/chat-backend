@@ -19,43 +19,51 @@ export class UserService {
   }
 
   async createUserName(email:string,name:string,password:string):Promise<boolean>{
-    const registerResponse:ApiResponse = await this.createRegisterRequest(email,name,password)
-    if(registerResponse.status==false){
-      alert("Fallo al registrarse o usuario existente: " + registerResponse.message.toString())
-      /**const loginResponse:ApiResponse = await this.loginRegisterRequest(email,password)
-      if(loginResponse.status==true){
-        localStorage.setItem("email",email)
-        localStorage.setItem("token",loginResponse.data.token)
-        this.nickName=name
-        this.token=loginResponse.data.token
-        return true;
-      }**/
-      return false;
+    try{
+      const registerResponse:ApiResponse = await this.createRegisterRequest(email,name,password)
+      if(registerResponse.status==false){
+        alert("Fallo al registrarse o usuario existente: " + registerResponse.message.toString())
+        /**const loginResponse:ApiResponse = await this.loginRegisterRequest(email,password)
+        if(loginResponse.status==true){
+          localStorage.setItem("email",email)
+          localStorage.setItem("token",loginResponse.data.token)
+          this.nickName=name
+          this.token=loginResponse.data.token
+          return true;
+        }**/
+        return false;
+      }
+      localStorage.setItem("nickname",registerResponse.data.nickname)
+      localStorage.setItem("email",email)
+      localStorage.setItem("imageUrl",registerResponse.data.imageUrl)
+      localStorage.setItem("token",registerResponse.data.token)
+      this.email=email
+      this.token=registerResponse.data.token
+      this.imageUrl=registerResponse.data.imageUrl
+      return true;
+    }catch(error){
+      return false
     }
-    localStorage.setItem("nickname",registerResponse.data.nickname)
-    localStorage.setItem("email",email)
-    localStorage.setItem("imageUrl",registerResponse.data.imageUrl)
-    localStorage.setItem("token",registerResponse.data.token)
-    this.email=email
-    this.token=registerResponse.data.token
-    this.imageUrl=registerResponse.data.imageUrl
-    return true;
   }
   async loginUserName(email:string,password:string):Promise<boolean>{
-    const loginResponse:ApiResponse = await this.loginRegisterRequest(email,password)
-    if(loginResponse.status==false){
-      return false;
+    try{
+      const loginResponse:ApiResponse = await this.loginRegisterRequest(email,password)
+      if(loginResponse.status==false){
+        return false;
+      }
+      localStorage.setItem("nickname",loginResponse.data.nickname)
+      localStorage.setItem("email",email)
+      localStorage.setItem("token",loginResponse.data.token)
+      localStorage.setItem("imageUrl",loginResponse.data.imageUrl)
+      this.nickName=loginResponse.data.nickname
+      alert("hola:" +loginResponse.data.nickname)
+      this.email=email
+      this.token=loginResponse.data.token
+      this.imageUrl=loginResponse.data.imageUrl
+      return true;
+    }catch(error){
+      return false
     }
-    localStorage.setItem("nickname",loginResponse.data.nickname)
-    localStorage.setItem("email",email)
-    localStorage.setItem("token",loginResponse.data.token)
-    localStorage.setItem("imageUrl",loginResponse.data.imageUrl)
-    this.nickName=loginResponse.data.nickname
-    alert("hola:" +loginResponse.data.nickname)
-    this.email=email
-    this.token=loginResponse.data.token
-    this.imageUrl=loginResponse.data.imageUrl
-    return true;
   }
 
   async createRegisterRequest(email:string,nickname: string,password:string):Promise<ApiResponse>{
@@ -141,5 +149,6 @@ export class UserService {
     this.nickName=""
     this.token=""
   }
+
 
 }

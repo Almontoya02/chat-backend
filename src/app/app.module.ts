@@ -11,7 +11,10 @@ import { LogoComponent } from './logo/logo.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { MainComponent } from './main/main.component';
-import { UpdateuserPageComponent } from './updateuser-page/updateuser-page.component'
+import { UpdateuserPageComponent } from './updateuser-page/updateuser-page.component';
+import { GroupItemComponent } from './group-item/group-item.component';
+import { DashboardChatComponent } from './dashboard-chat/dashboard-chat.component';
+import { UserMemberComponent } from './user-member/user-member.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { UpdateuserPageComponent } from './updateuser-page/updateuser-page.compo
     RegisterPageComponent,
     LoginPageComponent,
     MainComponent,
-    UpdateuserPageComponent
+    UpdateuserPageComponent,
+    GroupItemComponent,
+    DashboardChatComponent,
+    UserMemberComponent
   ],
   imports: [
     BrowserModule,
